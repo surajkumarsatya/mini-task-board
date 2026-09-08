@@ -55,6 +55,7 @@ mini-task-board/
 │           └── task.ts
 │
 ├── server/
+│   ├── .env.example
 │   └── src/
 │       ├── config/
 │       │   └── db.ts
@@ -203,9 +204,19 @@ database/schema.sql
  
 ## Environment Variables
  
-The backend uses environment variables for MySQL configuration and provides local defaults for development.
+The backend uses environment variables for MySQL configuration.
  
-Create a `.env` file inside the `server` directory:
+A template is provided at:
+ 
+```
+server/.env.example
+```
+ 
+The example file contains the required variable names without any private credentials.
+ 
+Create a local `.env` file inside the `server` directory and configure it using your local MySQL credentials.
+ 
+Example:
  
 ```
 DB_HOST=localhost
@@ -214,6 +225,8 @@ DB_USER=root
 DB_PASSWORD=your_mysql_password
 DB_NAME=mini_task_board
 ```
+ 
+Replace `your_mysql_password` with your local MySQL password.
  
 Do not commit your `.env` file or database credentials to the repository.
  
@@ -229,7 +242,7 @@ Make sure the following are installed:
 ### 1. Clone the repository
  
 ```bash
-git clone https://github.com/surajkumarsatya/mini-task-board.git
+git clone <your-github-repository-url>
 cd mini-task-board
 ```
  
@@ -263,7 +276,7 @@ Install dependencies:
 npm install
 ```
  
-Create the `.env` file with the required MySQL configuration.
+Create a `.env` file based on `.env.example` and configure your local MySQL credentials.
  
 Start the backend in development mode:
  
@@ -319,11 +332,13 @@ The application handles basic error cases on both the frontend and backend.
 - A loading state is displayed while tasks are being fetched.
 - API errors are displayed to the user.
 - Task actions are handled through the backend API.
+
 ### Backend
 - Empty task titles return a 400 response.
 - Requests for non-existent tasks return 404.
 - Database/API failures return appropriate 500 responses.
 - Database queries use parameterized values instead of string concatenation.
+
 ## TypeScript
  
 TypeScript is used across the application with strict type checking.
@@ -355,9 +370,9 @@ With additional development time, the application could be extended with:
 - Task search and filtering
 - Pagination for larger task lists
 - More detailed responsive and accessibility improvements
+
 ## Development
  
 The project was developed incrementally, with separate changes for the database, backend API, and frontend task board.
  
 The REST API was tested using CRUD operations before integrating the frontend.
- 
